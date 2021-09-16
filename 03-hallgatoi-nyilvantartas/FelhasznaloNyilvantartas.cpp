@@ -56,16 +56,32 @@ public:
 
 // HallgatoDb
 ///// valamilyen tarolo, a hallgatok reszere
+class HallgatoDb {
+    std::vector<Hallgato*> hallgatok;
+public:
+    HallgatoDb() {}
+    void addHallgato(Hallgato* hp) { hallgatok.push_back(hp); }
+    void print() {
+        for (int i = 0; i < hallgatok.size(); i++) {
+            hallgatok[i]->print();
+        }
+    }
+};
 
 int main()
 {
     Targy t1("NKNB-INTM024", "C++ programozas", 5);
     Targy t2("NKLB-INTM083", "Szoftverteszteles", 3);
-    t1.print(); t2.print();
+    //t1.print(); t2.print();
 
     Hallgato h1("Szucs Imre", "OKER3X");
     Hallgato h2("Nagy Eva", "KEJEE6");
     h1.addTargy(&t1); h1.addTargy(&t2);
     h2.addTargy(&t2);
-    h1.print(); h2.print();
+    //h1.print(); h2.print();
+
+    HallgatoDb mydb;
+    mydb.addHallgato(&h1);
+    mydb.addHallgato(&h2);
+    mydb.print();
 }
