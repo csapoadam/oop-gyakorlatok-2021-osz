@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 // Targy
 //// targy kodja: string
@@ -24,6 +25,7 @@ public:
     }
 };
 
+
 // Hallgato
 //// nev: string
 //// neptun kod: string
@@ -31,26 +33,23 @@ public:
 class Hallgato {
     std::string nev;
     std::string neptun;
-    Targy* targyak[100];
-    int felvettTargyakSzama;
+    //Targy* targyak[100];
+    std::vector<Targy*> targyak;
 public:
     // konstruktor
     Hallgato(std::string nv, std::string nkod) {
-        nev = nv; neptun = nkod; felvettTargyakSzama = 0;
+        nev = nv; neptun = nkod;
     }
     // addTargy
     void addTargy(Targy* tp) {
-        if (felvettTargyakSzama < 100) {
-            targyak[felvettTargyakSzama] = tp;
-            felvettTargyakSzama++;
-        }
+        targyak.push_back(tp);
     }
     // print
     void print() {
         std::cout << nev << " (neptun: " << neptun << "):" << std::endl;
-        for (int i = 0; i < felvettTargyakSzama; i++) {
+        for (Targy* tp : targyak) {
             std::cout << "\t";
-            targyak[i]->print();
+            tp->print();
         } 
     }
 };
