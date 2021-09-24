@@ -60,13 +60,16 @@ public:
 		// itt meg foglalkozni kell azzal az esettel, ha a lista ures...
 		Node* currentNode = head;
 		int currentInx = 0;
-		Node& retval = *head;
+		//Node& retval = *head;
+		Node* retval = head;
 		while (currentInx <= inx && currentNode != nullptr) {
-			retval = *currentNode;
+			// hiba! nem valtoztathato meg, hogy referencia mire hivatkozik!
+			//retval = *currentNode;
+			retval = currentNode; // ha pointer, akkor igen!
 			currentNode = currentNode->getNext();
 			currentInx++;
 		}
-		return retval;
+		return *retval; // a vegen *retval, mert vegul most is referenciat adunk vissza
 	}
 };
 
@@ -86,7 +89,7 @@ void func() {
 	mylist.print();
 	mylist[1].setValue(18);
 	std::cout << mylist[1].getValue() << std::endl;
-	mylist.print()
+	mylist.print();
 }
 
 int main()
