@@ -64,13 +64,15 @@ public:
 					sorok.push_back(elsoSor);
 				}
 				else {
-					Sor utolsoSor = sorok[numSorok - 1];
+					Sor& utolsoSor = sorok[numSorok - 1];
 					bool success = utolsoSor.addSzo(Szo(nextSzo));
+
 					if (!success) {
 						Sor nextSor;
 						nextSor.addSzo(Szo(nextSzo));
 						sorok.push_back(nextSor);
 					}
+
 				}
 
 				// adjuk hozza az utolso sorhoz!!
