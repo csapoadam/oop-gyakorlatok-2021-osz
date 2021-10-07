@@ -18,7 +18,7 @@ class Sor {
 	int currentHossz;
 	const int hosszLimit;
 public:
-	Sor() : currentHossz(0), hosszLimit(10) {}
+	Sor() : currentHossz(0), hosszLimit(75) {}
 	bool addSzo(const Szo& sz) {
 		if (currentHossz < hosszLimit) {
 			if (szavak.size() > 0) { currentHossz++; }
@@ -57,17 +57,48 @@ public:
 				stop = true;
 			}
 			if (nextSzo.length() > 0) {
+				int numSorok = sorok.size();
+				if (numSorok == 0) {
+					Sor elsoSor;
+					elsoSor.addSzo(Szo(nextSzo));
+					sorok.push_back(elsoSor);
+				}
+				else {
+					Sor utolsoSor = sorok[numSorok - 1];
+					bool success = utolsoSor.addSzo(Szo(nextSzo));
+					if (!success) {
+						Sor nextSor;
+						nextSor.addSzo(Szo(nextSzo));
+						sorok.push_back(nextSor);
+					}
+				}
+
 				// adjuk hozza az utolso sorhoz!!
-				std::cout << "hozzaadva!" << std::endl;
+				//std::cout << "hozzaadva!" << std::endl;
 			}
-			std::cout << "kovetkezo szo: ." << nextSzo << "." << std::endl;
+			//std::cout << "kovetkezo szo: ." << nextSzo << "." << std::endl;
 		}
 	}
-	void print() {}
+	void print() {
+		for (Sor sz : sorok) {
+			sz.print();
+		}
+	}
 };
 
 int main()
 {
+
+
+	//int inx2 = test.find(" ", inx + 1);
+	//std::string masodikSzo = test.substr(inx+1, inx2 - inx - 1);
+
+	//std::cout << "inx = " << inx << std::endl;
+	//std::cout << "elsoSzo = ." << elsoSzo << "." << std::endl;
+
+	//std::cout << "inx2 = " << inx2 << std::endl;
+	//std::cout << "masodikSzo = ." << masodikSzo << "." << std::endl;
+
 	Bekezdes b;
 	b.addText("This is a test szoveg.");
 	b.addText("Please, please add this text and do not forget to create new lines in the process.");
