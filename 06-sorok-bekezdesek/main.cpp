@@ -9,15 +9,24 @@ class Szo {
 	const std::string content;
 public:
 	Szo(const std::string& szo) : content(szo) {}
-	int getLength() { return content.length(); }
+	int getLength() const { return content.length(); }
 	void print() { std::cout << content; }
 };
 
 class Sor {
 	std::vector<Szo> szavak;
+	int currentHossz;
+	const int hosszLimit;
 public:
-	void addSzo(const Szo& sz) {
-		szavak.push_back(sz);
+	Sor() : currentHossz(0), hosszLimit(10) {}
+	bool addSzo(const Szo& sz) {
+		if (currentHossz < hosszLimit) {
+			if (szavak.size() > 0) { currentHossz++; }
+			currentHossz = currentHossz + sz.getLength();
+			szavak.push_back(sz);
+			return true;
+		}
+		return false;
 	}
 	void print() {
 		bool isFirst = true;
