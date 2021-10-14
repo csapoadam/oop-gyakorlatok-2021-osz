@@ -9,17 +9,22 @@
 #include <crtdbg.h>   //for malloc and free
 
 void f() {
-	Katona x = Katona("Eros Pista", "Hadnagy", 1977);
-	Katona y = Katona("Harcos Helga", "Ezredes", 1979);
+	Katona x("Eros Pista", "Hadnagy", 1977);
+	//Katona y("Harcos Helga", "Ezredes", 1979);
 
 	// az addPlecsni() metodus hozza letre a kituntetes objektumokat!
 	x.addPlecsni("Arany Akarmi Kereszt", 1997);
-	x.addPlecsni("Arany Felso Kereszt", 2002);
-	y.addPlecsni("Arany Facan a Legjobb!", 2005);
+	//x.addPlecsni("Arany Felso Kereszt", 2002);
+	//y.addPlecsni("Arany Facan a Legjobb!", 2005);
+
+	//Katona z(x); // ez crasht okozna ha nem valositjuk meg vagy delete-eljuk!
+
+	//Katona z("Neveto Harmadik", "mittomen", 1985);
+	//z = x; // copy assignment is bajt okozhat ha auto generalt!
 
 	Hadsereg h;
 	h.addKatona(&x);
-	h.addKatona(&y);
+	//h.addKatona(&y);
 
 	h.print();
 }
