@@ -12,8 +12,7 @@ void Katona::addPlecsni(const std::string& nev, int year) {
 	else {
 		KituntetesNode* candidateLastNode = elsoPlecsni;
 		while (true) {
-			bool success = candidateLastNode->append(newnode);
-			if (success) {
+			if (candidateLastNode->append(newnode)) {
 				break;
 			}
 			candidateLastNode = candidateLastNode->getNext();

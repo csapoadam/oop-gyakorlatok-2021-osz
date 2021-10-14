@@ -21,6 +21,13 @@ public:
 	KituntetesNode(const std::string& kitNev, int yearOfKit) :
 		next(nullptr), value(kitNev, yearOfKit)
 	{}
-	void setNext(KituntetesNode* nxt) { next = nxt; }
+	bool append(KituntetesNode* nxt) {
+		if (!next) {
+			next = nxt;
+			return true;
+		}
+		return false;
+	}
+	KituntetesNode* getNext() { return next; }
 	void print() { value.print(); }
 };
