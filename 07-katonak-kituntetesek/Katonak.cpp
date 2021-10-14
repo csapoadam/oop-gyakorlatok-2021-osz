@@ -9,13 +9,26 @@ void Katona::addPlecsni(const std::string& nev, int year) {
 	if (!elsoPlecsni) {
 		elsoPlecsni = newnode;
 	}
+	else {
+		KituntetesNode* candidateLastNode = elsoPlecsni;
+		while (true) {
+			bool success = candidateLastNode->append(newnode);
+			if (success) {
+				break;
+			}
+			candidateLastNode = candidateLastNode->getNext();
+		}
+	}
 }
 
 void Katona::print() {
 	std::cout << "\t" << nev << " (" << rang << " - " << szuletesiEv << ")";
 	std::cout << std::endl;
-	if (elsoPlecsni) {
-		elsoPlecsni->print();
+
+	KituntetesNode* candidateLastNode = elsoPlecsni;
+	while (candidateLastNode) {
+		candidateLastNode->print();
+		candidateLastNode = candidateLastNode->getNext();
 	}
 	// itt meg a plecsniket ki kell iratni!
 }
