@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 
+
 class Kituntetes {
 	std::string nev;
 	int evszam;

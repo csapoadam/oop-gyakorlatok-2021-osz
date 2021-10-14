@@ -1,5 +1,6 @@
 #pragma once
 
+#include <vector>
 #include "kituntetesek.h"
 
 
@@ -14,4 +15,16 @@ public:
 	~Katona();
 	void addPlecsni(const std::string& nev, int year);
 	void print();
+};
+
+class Hadsereg {
+	std::vector<Katona*> katonak;
+public:
+	void addKatona(Katona* kp) { katonak.push_back(kp); }
+	void print() {
+		std::cout << "Hadsereg tagjai:" << std::endl;
+		for (Katona* kp : katonak) {
+			kp->print();
+		}
+	}
 };

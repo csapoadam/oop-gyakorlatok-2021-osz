@@ -8,7 +8,6 @@ Katona::~Katona() {
 	KituntetesNode* nextToDelete = elsoPlecsni;
 	while (nextToDelete) {
 		KituntetesNode* followingNode = nextToDelete->getNext();
-		std::cout << " deleting " << std::endl;
 		nextToDelete->print();
 		delete nextToDelete;
 		nextToDelete = followingNode;
@@ -17,7 +16,6 @@ Katona::~Katona() {
 
 void Katona::addPlecsni(const std::string& nev, int year) {
 	KituntetesNode* newnode = new KituntetesNode(nev, year);
-	std::cout << "created new kituntetesnode " << std::endl;
 	if (!elsoPlecsni) {
 		elsoPlecsni = newnode;
 	}
