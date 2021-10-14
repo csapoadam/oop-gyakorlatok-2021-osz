@@ -10,12 +10,12 @@
 
 void f() {
 	Katona x("Eros Pista", "Hadnagy", 1977);
-	//Katona y("Harcos Helga", "Ezredes", 1979);
+	Katona y("Harcos Helga", "Ezredes", 1979);
 
 	// az addPlecsni() metodus hozza letre a kituntetes objektumokat!
 	x.addPlecsni("Arany Akarmi Kereszt", 1997);
-	//x.addPlecsni("Arany Felso Kereszt", 2002);
-	//y.addPlecsni("Arany Facan a Legjobb!", 2005);
+	x.addPlecsni("Arany Felso Kereszt", 2002);
+	y.addPlecsni("Arany Facan a Legjobb!", 2005);
 
 	//Katona z(x); // ez crasht okozna ha nem valositjuk meg vagy delete-eljuk!
 
@@ -24,7 +24,7 @@ void f() {
 
 	Hadsereg h;
 	h.addKatona(&x);
-	//h.addKatona(&y);
+	h.addKatona(&y);
 
 	h.print();
 }

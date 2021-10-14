@@ -8,7 +8,6 @@ Katona::~Katona() {
 	KituntetesNode* nextToDelete = elsoPlecsni;
 	while (nextToDelete) {
 		KituntetesNode* followingNode = nextToDelete->getNext();
-		nextToDelete->print();
 		delete nextToDelete;
 		nextToDelete = followingNode;
 	}
