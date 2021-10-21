@@ -32,5 +32,5 @@ int main()
     r.rendel(&m, 4);
     r.rendel(&m, 5);
     r.rendel(&m, 6);
-    //r.fizet();
+    r.fizet();
 }

@@ -1,5 +1,7 @@
 #include "menu.h"
 #include <iostream>
+#include <algorithm>
+#include <numeric>
 
 void Menu::addItem(MenuItem* mip) {
 	items.push_back(mip);
@@ -26,6 +28,13 @@ void Rendeles::rendel(Menu* mp, int itemnum) {
 		mip->print();
 		subtotal = subtotal + mip->getPrice();
 		std::cout << " - reszosszeg: " << subtotal;
+
+		if (mip->getType() == 1) { // nem szep megoldas, de meg
+			// nem vettuk a dynamic_cast-ot
+			potentialFreeItemPrices.push_back(mip->getPrice());
+			std::cout << " (lehet hogy ingyenes)";
+		}
+
 		std::cout << std::endl;
 	}
 	else {
@@ -34,4 +43,19 @@ void Rendeles::rendel(Menu* mp, int itemnum) {
 	}
 }
 
-void Rendeles::fizet() {}
+void Rendeles::fizet() {
+	// a kedvezmenyeket ossze kell szamolni (buy1get1free-knel)
+	// 1. sorba rendezzuk a potencialisan levonando arakat:
+	std::sort(potentialFreeItemPrices.begin(),
+		potentialFreeItemPrices.end());
+	int numB1G1Frees = potentialFreeItemPrices.size();
+	int numToLetGo = numB1G1Frees / 2;
+	double kedvezmeny = std::accumulate(
+		potentialFreeItemPrices.begin(),
+		potentialFreeItemPrices.begin() + numToLetGo,
+		0.0
+	);
+	double vegosszeg = subtotal - kedvezmeny;
+	std::cout << "KEDVEZMENY: " << kedvezmeny << std::endl;
+	std::cout << "VEGOSSZEG:" << vegosszeg << std::endl;
+}

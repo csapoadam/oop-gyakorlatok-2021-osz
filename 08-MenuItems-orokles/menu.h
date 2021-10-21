@@ -6,12 +6,16 @@
 class MenuItem {
 	std::string text;
 	double price;
+	int type; // ez csunya megoldas OOP szempontbol, de
+	// dynamic_cast-ot meg nem vettunk
 public:
 	MenuItem(const std::string& s, double d) :
-		text(s), price(d)
+		text(s), price(d), type(0)
 	{}
 	void print();
 	double getPrice() { return price; }
+	int getType() { return type; }
+	void setType(int t) { type = t; }
 };
 
 
@@ -49,11 +53,14 @@ public:
 class Buy1Get1Free : public MenuItem {
 public:
 	Buy1Get1Free(const std::string& s,
-		double p) : MenuItem(s, p) {}
+		double p) : MenuItem(s, p) {
+		setType(1);
+	}
 };
 
 class Rendeles {
 	double subtotal;
+	std::vector<double> potentialFreeItemPrices;
 public:
 	Rendeles() : subtotal(0) {}
 	void rendel(Menu*, int);
