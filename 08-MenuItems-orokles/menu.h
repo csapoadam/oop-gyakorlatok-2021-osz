@@ -20,5 +20,18 @@ public:
 	void print();
 };
 
+class DiscountedItem : public MenuItem {
+	const double discountFactor;
+	double originalPrice;
+public:
+	DiscountedItem(const std::string& s,
+		double originalP,
+		double dfactor) :
+			MenuItem(s, dfactor * originalP),
+			discountFactor(dfactor),
+			originalPrice(originalP)
+	{
+	}
+};
 
 
