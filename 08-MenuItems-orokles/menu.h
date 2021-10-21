@@ -36,4 +36,10 @@ public:
 	}
 };
 
+class Buy1Get1Free : public MenuItem {
+public:
+	Buy1Get1Free(const std::string& s,
+		double p) : MenuItem(s, p) {}
+};
+
 
