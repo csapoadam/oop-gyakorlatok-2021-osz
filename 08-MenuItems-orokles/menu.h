@@ -30,6 +30,8 @@ public:
 			MenuItem(s, dfactor * originalP),
 			discountFactor(dfactor),
 			originalPrice(originalP)
+		// szebben meg lehetne oldani virtualis
+		// print metodussal, de errol majd kesobb
 	{
 	}
 };
