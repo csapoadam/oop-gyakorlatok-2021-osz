@@ -25,12 +25,12 @@ int main()
 
     std::cout << std::endl << " ---" << std::endl;
 
-    /*Rendeles r;
+    Rendeles r;
     r.rendel(&m, 1);
     r.rendel(&m, 3);
     r.rendel(&m, 4);
     r.rendel(&m, 4);
     r.rendel(&m, 5);
     r.rendel(&m, 6);
-    r.fizet();*/
+    //r.fizet();
 }

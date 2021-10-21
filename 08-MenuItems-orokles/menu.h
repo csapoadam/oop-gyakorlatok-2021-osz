@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <iostream>
 
 class MenuItem {
 	std::string text;
@@ -10,6 +11,7 @@ public:
 		text(s), price(d)
 	{}
 	void print();
+	double getPrice() { return price; }
 };
 
 
@@ -18,6 +20,14 @@ class Menu {
 public:
 	void addItem(MenuItem* mip);
 	void print();
+	MenuItem* getNthItem(int n) {
+		if (n > items.size()) {
+			return nullptr;
+		}
+		else {
+			return items[n - 1];
+		}
+	}
 };
 
 class DiscountedItem : public MenuItem {
@@ -41,5 +51,14 @@ public:
 	Buy1Get1Free(const std::string& s,
 		double p) : MenuItem(s, p) {}
 };
+
+class Rendeles {
+	double subtotal;
+public:
+	Rendeles() : subtotal(0) {}
+	void rendel(Menu*, int);
+	void fizet();
+};
+
 
 
