@@ -4,12 +4,15 @@
 // Raktar osztaly:
 // Termek tipusu pointereket tarol el
 // Termek legyen absztrakt osztaly!
-// mindegyik termekhez szamon tart mennyiseget
+// mindegyik termekhez szamon tart mennyiseget (hibatlan es hibas darabszam)
 // A termek lehet garancialis v. csereszavatos (csere garancialis?)
-// ezen belul legyen TV, Mobiltelefon, Laptop
-// minden termek "tudja", hogy melyik
-// ... raktarbol szarmazik
-// igy ha a termeket "visszakuldik", ez megteheto
+// ezen belul legyen Laptop, Mobilkeszulek
+
+// A raktar kiad(Termek*, dbszam) metodusa csokkenti a hibatlan darabok szamat
+// A raktar visszavesz(Termek*) metodusa meghivja a Termek osztaly
+// javit(Raktar*) pure virtual metodusat es attol fuggoen hogy a termek milyen
+// tipusu, a Raktarban megnovekedhet a hibas darabok szama es csokkenhet a
+// hibatlan darabok szama, vagy: nem valtozik semmi mert javitjak garancialisan
 
 
 #include <iostream>
@@ -24,10 +27,13 @@ int main()
     Mobilkeszulek m1("Xperia Hypersuper", 2019);
     r.add(&l1, 10).add(&l2, 15).add(&m1, 3);
     r.print();
-    l1.javit(&r);
-    l2.javit(&r);
-    m1.javit(&r);
+    
+    r.kiad(l1, 2);
+    r.kiad(l2, 3);
+    r.kiad(m1, 1);
 
+    r.visszavesz(l1, 1);
+    r.visszavesz(m1, 1);
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
