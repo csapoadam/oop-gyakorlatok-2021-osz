@@ -37,6 +37,14 @@ public:
 
 class Raktar {
 	std::vector<Termek*> termekek;
+public:
+	Raktar& add(Termek* t) {
+		termekek.push_back(t);
+		return *this;
+	}
+	void print() {
+		for (Termek* t : termekek) { t->print(); }
+	}
 };
 
 class Garancialis : public Termek {

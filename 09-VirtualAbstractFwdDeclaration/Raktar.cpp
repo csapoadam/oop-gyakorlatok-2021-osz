@@ -22,9 +22,8 @@ int main()
     Laptop l1("ASUS TUF Gaming", 2020, 5);
     Laptop l2("Lenovo Legion Y520", 2018, 3);
     Mobilkeszulek m1("Xperia Hypersuper", 2019, 4);
-    l1.print();
-    l2.print();
-    m1.print();
+    r.add(&l1).add(&l2).add(&m1);
+    r.print();
     l1.javit(&r);
     l2.javit(&r);
     m1.javit(&r);
