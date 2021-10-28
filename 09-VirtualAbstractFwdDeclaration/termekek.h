@@ -11,24 +11,17 @@ class Raktar; // forward deklaracio!
 
 // termeknek legyen:
 // neve
-// elettartama (evekben merve)
-// gyartasi eve 
-// ha az elettartam letelik, minden evben 50% esellyel
-// elromlik
-// legyen benne egy flag, hogy elromlott 
 class Termek {
 	std::string nev;
-	int elettartam;
-	int gyartasiEv;
-	bool elromlott;
+	int kiadasEve;
 public:
-	Termek(const std::string& nm, int ge, int et)
-		: nev(nm), elettartam(et), gyartasiEv(ge), elromlott(false) {}
+	Termek(const std::string& nm, int ke)
+		: nev(nm), kiadasEve(ke) {}
 	virtual void print() {
 		// virtual, mert akar felul is definialhato.
 		// DE: nem muszaj feluldefinialni, mivel itt is elvben minden info
 		// rendelkezesre all
-		std::cout << nev << " (gyartas eve: " << gyartasiEv << "), elromlott?" << elromlott << std::endl;
+		std::cout << nev << " (kiadas eve: " << kiadasEve << ")" << std::endl;
 	}
 	virtual void javit(Raktar*) = 0; // pure virtual method! -> abstract class
 	// ezt, hogy javit() itt nem tudjuk definialni, mert nem tudjuk, hogy
@@ -60,8 +53,8 @@ public:
 
 class Garancialis : public Termek {
 public:
-	Garancialis(const std::string nm, int gyartasiev, int elettartam) :
-		Termek(nm, gyartasiev, elettartam) {}
+	Garancialis(const std::string nm, int ke) :
+		Termek(nm, ke) {}
 	void javit(Raktar*) override {
 		std::cout << "A termeket megprobaljuk javitani" << std::endl;
 	}
@@ -69,8 +62,8 @@ public:
 
 class Csereszavatos : public Termek {
 public:
-	Csereszavatos(const std::string nm, int gyartasiev, int elettartam) :
-		Termek(nm, gyartasiev, elettartam) {}
+	Csereszavatos(const std::string nm, int ke) :
+		Termek(nm, ke) {}
 	void javit(Raktar*) override {
 		std::cout << "A termek nem javithato, de csereljuk!" << std::endl;
 	}
@@ -78,12 +71,12 @@ public:
 
 class Laptop : public Garancialis {
 public:
-	Laptop(const std::string nm, int gyartasiev, int elettartam) :
-		Garancialis(nm, gyartasiev, elettartam) {}
+	Laptop(const std::string nm, int ke) :
+		Garancialis(nm, ke) {}
 };
 
 class Mobilkeszulek : public Csereszavatos {
 public:
-	Mobilkeszulek(const std::string nm, int gyartasiev, int elettartam) :
-		Csereszavatos(nm, gyartasiev, elettartam) {}
+	Mobilkeszulek(const std::string nm, int ke) :
+		Csereszavatos(nm, ke) {}
 };
