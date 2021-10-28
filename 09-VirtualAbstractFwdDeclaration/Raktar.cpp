@@ -27,13 +27,18 @@ int main()
     Mobilkeszulek m1("Xperia Hypersuper", 2019);
     r.add(&l1, 10).add(&l2, 15).add(&m1, 3);
     r.print();
-    
-    r.kiad(l1, 2);
-    r.kiad(l2, 3);
-    r.kiad(m1, 1);
+    std::cout << "-----" << std::endl;
 
-    r.visszavesz(l1, 1);
-    r.visszavesz(m1, 1);
+    r.kiad(&l1, 2);
+    r.kiad(&l2, 3);
+    r.kiad(&m1, 1);
+    r.print();
+    std::cout << "-----" << std::endl;
+
+    r.visszavesz(&l1, 1);
+    r.visszavesz(&m1, 1);
+    r.print();
+    std::cout << "-----" << std::endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

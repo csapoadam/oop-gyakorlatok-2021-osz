@@ -4,13 +4,14 @@
 #include <vector>
 
 class Raktar; // forward deklaracio!
-// ez azert fontos, mert a Termek interfesze (javit()) hivatkozik
+// ez azert fontos, mert a Termek interfesze (javit(Raktar*)) hivatkozik
 // a Raktar tipusra, de a fordito nem tudja hogy ilyen tipus letezik!
 // itt viszont nem lehet kifejteni a Raktar osztalyt, mert abban lesznek
 // Termek*-ok is, mivel egy vektorban tarolnia kell a Termekek cimeit
 
 // termeknek legyen:
 // neve
+// kiadasEve
 class Termek {
 	std::string nev;
 	int kiadasEve;
@@ -39,6 +40,35 @@ public:
 		hibasDarabszam.push_back(0);
 		return *this;
 	}
+	void addHibas(Termek* term) {
+		int cnt = 0;
+		for (Termek* t : termekek) {
+			if (t == term) {
+				hibasDarabszam[cnt] += 1;
+			}
+			cnt++;
+		}
+	}
+	void kiad(Termek* term, int db) {
+		int cnt = 0;
+		for (Termek* t : termekek) {
+			if (t == term) {
+				if (hibatlanDarabszam[cnt] < db) {
+					std::cout << "nincsen ennyi darab!";
+					hibatlanDarabszam[cnt] = 0;
+				}
+				else {
+					hibatlanDarabszam[cnt] = hibatlanDarabszam[cnt] - db;
+				}
+			}
+			cnt++;
+		}
+	}
+	void visszavesz(Termek* t, int db) {
+		for (int i = 0; i < db; i++) {
+			t->javit(this);
+		}
+	}
 	void print() {
 		int cnt = 0;
 		for (Termek* t : termekek) {
@@ -55,8 +85,9 @@ class Garancialis : public Termek {
 public:
 	Garancialis(const std::string nm, int ke) :
 		Termek(nm, ke) {}
-	void javit(Raktar*) override {
+	void javit(Raktar* rp) override {
 		std::cout << "A termeket megprobaljuk javitani" << std::endl;
+		rp->addHibas(this);
 	}
 };
 
@@ -64,8 +95,10 @@ class Csereszavatos : public Termek {
 public:
 	Csereszavatos(const std::string nm, int ke) :
 		Termek(nm, ke) {}
-	void javit(Raktar*) override {
+	void javit(Raktar* rp) override {
 		std::cout << "A termek nem javithato, de csereljuk!" << std::endl;
+		rp->addHibas(this);
+		rp->kiad(this, 1);
 	}
 };
 
