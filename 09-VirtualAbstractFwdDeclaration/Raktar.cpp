@@ -27,13 +27,13 @@ int main()
     Laptop l1("ASUS TUF Gaming", 2020);
     Laptop l2("Lenovo Legion Y520", 2018);
     Mobilkeszulek m1("Xperia Hypersuper", 2019);
-    r.add(&l1, 10).add(&l2, 15).add(&m1, 3);
+    r.add(&l1, 2).add(&l2, 3).add(&m1, 4);
     r.print();
     std::cout << "-----" << std::endl;
 
     r.kiad(&l1, 2);
-    r.kiad(&l2, 3);
-    r.kiad(&m1, 1);
+    r.kiad(&l2, 1);
+    r.kiad(&m1, 3);
     r.print();
     std::cout << "-----" << std::endl;
 

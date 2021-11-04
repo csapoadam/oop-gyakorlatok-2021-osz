@@ -15,22 +15,30 @@ void TermekCsalad::print() {
 	std::cout << nev << " (kiadas eve: " << kiadasEve << ")" << std::endl;
 }
 
+void Termek::javit(Raktar* rp) {
+	// ha ennek a termeknek a termekcsaladja
+	// Garancialis, megprobaljuk javitani
+	// ha Csereszavatos, akkor kicsereljuk
+	// ... de dynamic castot nem tanultunk meg...
+
+	if (tipus->isCserelheto()) {
+		std::cout << "A termek nem javithato, de csereljuk!" << std::endl;
+		rp->addHibas(this);
+		rp->kiad(this->tipus, 1);
+	}
+	else {
+		std::cout << "A termeket megprobaljuk javitani" << std::endl;
+		rp->addHibas(this);
+	}
+}
+
 Garancialis::Garancialis(const std::string nm, int ke) :
 	TermekCsalad(nm, ke) {}
 
-void Garancialis::javit(Raktar* rp) {
-	std::cout << "A termeket megprobaljuk javitani" << std::endl;
-	rp->addHibas(this);
-}
 
 Csereszavatos::Csereszavatos(const std::string nm, int ke) :
 	TermekCsalad(nm, ke) {}
 
-void Csereszavatos::javit(Raktar* rp) {
-	std::cout << "A termek nem javithato, de csereljuk!" << std::endl;
-	rp->addHibas(this);
-	rp->kiad(this, 1);
-}
 
 Laptop::Laptop(const std::string nm, int ke) :
 	Garancialis(nm, ke) {}

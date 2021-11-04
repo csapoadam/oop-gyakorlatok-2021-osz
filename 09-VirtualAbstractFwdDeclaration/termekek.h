@@ -12,24 +12,36 @@ class TermekCsalad {
 public:
 	TermekCsalad(const std::string& nm, int ke);
 	virtual void print();
-	virtual void javit(Raktar*) = 0; // pure virtual method! -> abstract class
-	// ezt, hogy javit() itt nem tudjuk definialni, mert nem tudjuk, hogy
-	// javithato-e a termek (garancialis? vagy cserelik rogton?)
+	virtual bool isCserelheto() = 0;
+};
+
+class Termek {
+	TermekCsalad* tipus;
+	bool isKiadva;
+public:
+	Termek(TermekCsalad* tc) : tipus(tc), isKiadva(false) {}
+	void kiad() { isKiadva = true; }
+	void visszavesz() { isKiadva = false; }
+	bool isKiadhato() { return !isKiadva; }
+	TermekCsalad* getTipus() { return tipus; }
+	void javit(Raktar*);
+	void print() {
+		std::cout << "Termek:" << std::endl;
+		tipus->print();
+		std::cout << " kiadva: " << isKiadva << std::endl;
+	}
 };
 
 class Garancialis : public TermekCsalad {
 public:
 	Garancialis(const std::string nm, int ke);
-	void javit(Raktar* rp) override; // kulon
-	// cpp file-ban kell definialni, mert rp
-	// metodusai itt nem ismertek
+	bool isCserelheto() override { return false; }
 };
 
 class Csereszavatos : public TermekCsalad {
 public:
 	Csereszavatos(const std::string nm, int ke);
-	void javit(Raktar* rp) override; // ezt is
-	// kulon cpp file-ban kell definialni
+	bool isCserelheto() override { return true; }
 };
 
 class Laptop : public Garancialis {
