@@ -18,6 +18,7 @@
 #include <iostream>
 
 #include "termekek.h"
+#include "raktarak.h"
 
 int main()
 {
