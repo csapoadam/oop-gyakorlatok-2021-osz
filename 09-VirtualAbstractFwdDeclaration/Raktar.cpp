@@ -2,14 +2,14 @@
 //
 
 // Raktar osztaly:
-// Termek tipusu pointereket tarol el
-// Termek legyen absztrakt osztaly!
+// TermekCsalad tipusu pointereket tarol el
+// TermekCsalad legyen absztrakt osztaly!
 // mindegyik termekhez szamon tart mennyiseget (hibatlan es hibas darabszam)
 // A termek lehet garancialis v. csereszavatos (csere garancialis?)
 // ezen belul legyen Laptop, Mobilkeszulek
 
-// A raktar kiad(Termek*, dbszam) metodusa csokkenti a hibatlan darabok szamat
-// A raktar visszavesz(Termek*) metodusa meghivja a Termek osztaly
+// A raktar kiad(TermekCsalad*, dbszam) metodusa csokkenti a hibatlan darabok szamat
+// A raktar visszavesz(TermekCsalad*) metodusa meghivja a TermekCsalad osztaly
 // javit(Raktar*) pure virtual metodusat es attol fuggoen hogy a termek milyen
 // tipusu, a Raktarban megnovekedhet a hibas darabok szama es csokkenhet a
 // hibatlan darabok szama, vagy: nem valtozik semmi mert javitjak garancialisan

@@ -5,10 +5,10 @@
 #include "termekek.h"
 #include "raktarak.h"
 
-Termek::Termek(const std::string& nm, int ke)
+TermekCsalad::TermekCsalad(const std::string& nm, int ke)
 	: nev(nm), kiadasEve(ke) {}
 
-void Termek::print() {
+void TermekCsalad::print() {
 	// virtual, mert akar felul is definialhato.
 	// DE: nem muszaj feluldefinialni, mivel itt is elvben minden info
 	// rendelkezesre all
@@ -16,7 +16,7 @@ void Termek::print() {
 }
 
 Garancialis::Garancialis(const std::string nm, int ke) :
-	Termek(nm, ke) {}
+	TermekCsalad(nm, ke) {}
 
 void Garancialis::javit(Raktar* rp) {
 	std::cout << "A termeket megprobaljuk javitani" << std::endl;
@@ -24,7 +24,7 @@ void Garancialis::javit(Raktar* rp) {
 }
 
 Csereszavatos::Csereszavatos(const std::string nm, int ke) :
-	Termek(nm, ke) {}
+	TermekCsalad(nm, ke) {}
 
 void Csereszavatos::javit(Raktar* rp) {
 	std::cout << "A termek nem javithato, de csereljuk!" << std::endl;

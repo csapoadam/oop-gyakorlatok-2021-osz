@@ -1,23 +1,23 @@
 #pragma once
 
 class Raktar; // forward deklaracio!
-// ez azert fontos, mert a Termek interfesze (javit(Raktar*)) hivatkozik
+// ez azert fontos, mert a TermekCsalad interfesze (javit(Raktar*)) hivatkozik
 // a Raktar tipusra, de a fordito nem tudja hogy ilyen tipus letezik!
 // itt viszont nem lehet kifejteni a Raktar osztalyt, mert abban lesznek
-// Termek*-ok is, mivel egy vektorban tarolnia kell a Termekek cimeit
+// TermekCsalad*-ok is, mivel egy vektorban tarolnia kell a Termekek cimeit
 
-class Termek {
+class TermekCsalad {
 	std::string nev;
 	int kiadasEve;
 public:
-	Termek(const std::string& nm, int ke);
+	TermekCsalad(const std::string& nm, int ke);
 	virtual void print();
 	virtual void javit(Raktar*) = 0; // pure virtual method! -> abstract class
 	// ezt, hogy javit() itt nem tudjuk definialni, mert nem tudjuk, hogy
 	// javithato-e a termek (garancialis? vagy cserelik rogton?)
 };
 
-class Garancialis : public Termek {
+class Garancialis : public TermekCsalad {
 public:
 	Garancialis(const std::string nm, int ke);
 	void javit(Raktar* rp) override; // kulon
@@ -25,7 +25,7 @@ public:
 	// metodusai itt nem ismertek
 };
 
-class Csereszavatos : public Termek {
+class Csereszavatos : public TermekCsalad {
 public:
 	Csereszavatos(const std::string nm, int ke);
 	void javit(Raktar* rp) override; // ezt is
