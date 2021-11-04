@@ -14,8 +14,9 @@
 // tipusu, a Raktarban megnovekedhet a hibas darabok szama es csokkenhet a
 // hibatlan darabok szama, vagy: nem valtozik semmi mert javitjak garancialisan
 
-
 #include <iostream>
+#include <string>
+#include <vector>
 
 #include "termekek.h"
 #include "raktarak.h"
