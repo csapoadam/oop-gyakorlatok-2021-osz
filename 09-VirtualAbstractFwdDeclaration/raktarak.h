@@ -17,6 +17,7 @@ class Raktar {
 	/*std::vector<int> hibatlanDarabszam;
 	std::vector<int> hibasDarabszam;*/
 public:
+	~Raktar();
 	Raktar& add(TermekCsalad* t, int quantity);
 	// addHibas-t csak a Csereszavatos es Garancialis
 	// osztalyok javit metodusaban hivjuk meg, de ez is
