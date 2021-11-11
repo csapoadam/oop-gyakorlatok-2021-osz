@@ -14,5 +14,9 @@ int main()
 	//	std::cout << elem << ", ";
 	//}
 
-	Jatek j(7, 10);
+	BabuPositions positions;
+	positions[std::make_pair<int, int>(3, 4)] = BabuTypes::Aligator;
+	positions[std::make_pair<int, int>(1, 7)] = BabuTypes::Csirke;
+
+	Jatek j(7, 10, positions);
 }
