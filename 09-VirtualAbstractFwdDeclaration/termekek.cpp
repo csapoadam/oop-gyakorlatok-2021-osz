@@ -31,6 +31,14 @@ void Termek::javit(Raktar* rp) {
 	}
 }
 
+void Termek::setHibas(bool h) {
+	isHibatlan = !h;
+}
+
+bool Termek::isNotHibas() {
+	return isHibatlan;
+}
+
 Garancialis::Garancialis(const std::string nm, int ke) :
 	TermekCsalad(nm, ke) {}
 

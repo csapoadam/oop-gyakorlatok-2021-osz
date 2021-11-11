@@ -17,13 +17,16 @@ public:
 class Termek {
 	TermekCsalad* tipus;
 	bool isKiadva;
+	bool isHibatlan;
 public:
-	Termek(TermekCsalad* tc) : tipus(tc), isKiadva(false) {}
+	Termek(TermekCsalad* tc) : tipus(tc), isKiadva(false), isHibatlan(true) {}
 	void kiad() { isKiadva = true; }
 	void visszavesz() { isKiadva = false; }
 	bool isKiadhato() { return !isKiadva; }
 	TermekCsalad* getTipus() { return tipus; }
 	void javit(Raktar*);
+	void setHibas(bool);
+	bool isNotHibas();
 	void print() {
 		std::cout << "Termek:" << std::endl;
 		tipus->print();
