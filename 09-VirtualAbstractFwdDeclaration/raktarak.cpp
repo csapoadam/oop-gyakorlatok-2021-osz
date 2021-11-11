@@ -5,6 +5,12 @@
 #include "termekek.h"
 #include "raktarak.h"
 
+Raktar::~Raktar() {
+	for (Termek* t : termekek) {
+		delete t;
+	}
+}
+
 Raktar& Raktar::add(TermekCsalad* t, int quantity) {
 	for (int i = 0; i < quantity; i++) {
 		termekek.push_back(new Termek(t));

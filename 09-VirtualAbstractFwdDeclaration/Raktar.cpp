@@ -21,26 +21,39 @@
 #include "termekek.h"
 #include "raktarak.h"
 
-int main()
-{
-    Raktar r;
+void f() {
+    Raktar* r = new Raktar;
     Laptop l1("ASUS TUF Gaming", 2020);
     Laptop l2("Lenovo Legion Y520", 2018);
     Mobilkeszulek m1("Xperia Hypersuper", 2019);
-    r.add(&l1, 2).add(&l2, 3).add(&m1, 4);
-    r.print();
+    r->add(&l1, 2).add(&l2, 3).add(&m1, 4);
+    r->print();
     std::cout << "-----" << std::endl;
 
-    r.kiad(&l1, 2);
-    r.kiad(&l2, 1);
-    r.kiad(&m1, 3);
-    r.print();
+    r->kiad(&l1, 2);
+    r->kiad(&l2, 1);
+    r->kiad(&m1, 3);
+    r->print();
     std::cout << "-----" << std::endl;
 
-    r.visszavesz(&l1, 1);
-    r.visszavesz(&m1, 1);
-    r.print();
+    r->visszavesz(&l1, 1);
+    r->visszavesz(&m1, 1);
+    r->print();
     std::cout << "-----" << std::endl;
+
+    delete r;
+    // breakpoint es memory snapshot:
+    std::cout << "bye bye raktar!" << std::endl;
+}
+
+int main()
+{
+    for (int i = 0; i < 10; i++) {
+        std::cout << i + 1 << std::endl; // ide breakpoint!
+        f();
+    }
+
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
