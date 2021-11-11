@@ -12,7 +12,6 @@ class TermekCsalad {
 public:
 	TermekCsalad(const std::string& nm, int ke);
 	virtual void print();
-	virtual bool isCserelheto() = 0;
 };
 
 class Termek {
@@ -35,13 +34,11 @@ public:
 class Garancialis : public TermekCsalad {
 public:
 	Garancialis(const std::string nm, int ke);
-	bool isCserelheto() override { return false; }
 };
 
 class Csereszavatos : public TermekCsalad {
 public:
 	Csereszavatos(const std::string nm, int ke);
-	bool isCserelheto() override { return true; }
 };
 
 class Laptop : public Garancialis {

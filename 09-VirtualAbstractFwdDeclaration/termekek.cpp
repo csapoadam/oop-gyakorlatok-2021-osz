@@ -19,9 +19,8 @@ void Termek::javit(Raktar* rp) {
 	// ha ennek a termeknek a termekcsaladja
 	// Garancialis, megprobaljuk javitani
 	// ha Csereszavatos, akkor kicsereljuk
-	// ... de dynamic castot nem tanultunk meg...
 
-	if (tipus->isCserelheto()) {
+	if (dynamic_cast<Csereszavatos*>(this->tipus)) {
 		std::cout << "A termek nem javithato, de csereljuk!" << std::endl;
 		rp->addHibas(this);
 		rp->kiad(this->tipus, 1);
