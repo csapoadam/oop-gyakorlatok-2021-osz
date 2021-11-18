@@ -19,7 +19,7 @@ int main()
 	positions[std::make_pair<int, int>(1, 7)] = BabuTypes::Csirke;
 	// mi tortenik, ha tulcimzek?
 	// alapbol crash-elne a program!
-	//positions[std::make_pair<int, int>(100, 100)] = BabuTypes::Ember;
+	positions[std::make_pair<int, int>(100, 100)] = BabuTypes::Ember;
 
 	Jatek j(7, 10, positions);
 }

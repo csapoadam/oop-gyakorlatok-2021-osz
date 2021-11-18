@@ -16,19 +16,24 @@ public:
 		}
 	}
 	void createBabu(int coordX, int coordY, BabuTypes bt) {
-		if (bt == BabuTypes::Aligator) {
-			std::cout << "creating aligator at cell ";
-			tabla[coordX][coordY] = new Aligator();
+		try { // .at() miatt!
+			if (bt == BabuTypes::Aligator) {
+				std::cout << "creating aligator at cell ";
+				tabla.at(coordX).at(coordY) = new Aligator();
+			}
+			else if (bt == BabuTypes::Csirke) {
+				std::cout << "creating csirke at cell ";
+				tabla.at(coordX).at(coordY) = new Csirke();
+			}
+			else if (bt == BabuTypes::Ember) {
+				std::cout << "creating ember at cell ";
+				tabla.at(coordX).at(coordY) = new Ember();
+			}
+			std::cout << coordX << ", " << coordY << std::endl;
 		}
-		else if (bt == BabuTypes::Csirke) {
-			std::cout << "creating csirke at cell ";
-			tabla[coordX][coordY] = new Csirke();
+		catch (std::out_of_range const& exc) {
+			std::cout << std::endl << exc.what() << std::endl;
 		}
-		else if (bt == BabuTypes::Ember) {
-			std::cout << "creating ember at cell ";
-			tabla[coordX][coordY] = new Ember();
-		}
-		std::cout << coordX << ", " << coordY << std::endl;
 	}
 	void print() {
 		for (int s = 0; s < szSorok; s++) {
