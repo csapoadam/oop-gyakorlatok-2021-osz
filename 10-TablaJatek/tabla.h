@@ -24,6 +24,10 @@ public:
 			}
 		}
 	}
+	// tiltsuk le a copy constructort es assignmentet!
+	Tabla(const Tabla&) = delete;
+	Tabla& operator=(const Tabla&) = delete;
+
 	void createBabu(int coordX, int coordY, BabuTypes bt) {
 		try { // .at() miatt!
 			if (bt == BabuTypes::Aligator) {

@@ -4,6 +4,12 @@
 
 typedef std::map<std::pair<int, int>, BabuTypes> BabuPositions;
 
+// Az ilyenek miatt gondolni kell a copy constructorra
+// akkor is, ha kezzel mi magunk sohase copyznank!
+//void printTable(Tabla t) {
+//	t.print();
+//}
+
 class Jatek {
 	Tabla tabla;
 public:
@@ -23,5 +29,10 @@ public:
 			tabla.createBabu(coordx, coordy, bt);
 		}
 		tabla.print();
+
+		//printTable(tabla); // itt alapbol masolas tortenne!
+		//Tabla tabla2(sorok, oszlopok);
+		//tabla2 = tabla; // erre is vigyazni kell (copy assignment)
+
 	}
 };
