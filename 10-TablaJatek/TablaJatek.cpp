@@ -17,6 +17,9 @@ int main()
 	BabuPositions positions;
 	positions[std::make_pair<int, int>(3, 4)] = BabuTypes::Aligator;
 	positions[std::make_pair<int, int>(1, 7)] = BabuTypes::Csirke;
+	// mi tortenik, ha tulcimzek?
+	// alapbol crash-elne a program!
+	//positions[std::make_pair<int, int>(100, 100)] = BabuTypes::Ember;
 
 	Jatek j(7, 10, positions);
 }

@@ -18,12 +18,15 @@ public:
 	void createBabu(int coordX, int coordY, BabuTypes bt) {
 		if (bt == BabuTypes::Aligator) {
 			std::cout << "creating aligator at cell ";
+			tabla[coordX][coordY] = new Aligator();
 		}
 		else if (bt == BabuTypes::Csirke) {
 			std::cout << "creating csirke at cell ";
+			tabla[coordX][coordY] = new Csirke();
 		}
 		else if (bt == BabuTypes::Ember) {
 			std::cout << "creating ember at cell ";
+			tabla[coordX][coordY] = new Ember();
 		}
 		std::cout << coordX << ", " << coordY << std::endl;
 	}
@@ -33,6 +36,9 @@ public:
 			for (auto cella : tabla[s]) {
 				if (!cella) { // ha nullptr
 					std::cout << " 0 |";
+				}
+				else {
+					std::cout << " " << cella->char_rep() << " |";
 				}
 			}
 			std::cout << std::endl;
