@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <iostream>
 
 #include "babuk.h"
 
@@ -13,6 +14,18 @@ public:
 			// letre kell hoznunk egy szOszlopok hosszu vektort nullptr-ekkel
 			tabla.push_back(std::vector<Babu*>(szOszlopok, nullptr));
 		}
+	}
+	void createBabu(int coordX, int coordY, BabuTypes bt) {
+		if (bt == BabuTypes::Aligator) {
+			std::cout << "creating aligator at cell ";
+		}
+		else if (bt == BabuTypes::Csirke) {
+			std::cout << "creating csirke at cell ";
+		}
+		else if (bt == BabuTypes::Ember) {
+			std::cout << "creating ember at cell ";
+		}
+		std::cout << coordX << ", " << coordY << std::endl;
 	}
 	void print() {
 		for (int s = 0; s < szSorok; s++) {
