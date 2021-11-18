@@ -32,8 +32,20 @@ class Tabla {
 		}
 		return retval;
 	}
+	cellCoords getRandomSzomszed(std::vector<cellCoords>& szomszedok) {
+		double rand01 = (double)rand() / RAND_MAX; // 0 es 1 kozotti szam
+		double leptek = 1.0 / szomszedok.size();
+		int leptekCnt = 1;
+		while (true) {
+			if (rand01 < (leptekCnt * leptek) + 0.001) {
+				return szomszedok[leptekCnt - 1];
+			}
+			leptekCnt++;
+		}
+	}
 public:
 	Tabla(int sorok, int oszlopok) : szSorok(sorok), szOszlopok(oszlopok) {
+		srand(time(NULL)); // a seed-et 1x allitjuk!
 		for (int s = 0; s < szSorok; s++) {
 			// letre kell hoznunk egy szOszlopok hosszu vektort nullptr-ekkel
 			tabla.push_back(std::vector<Babu*>(szOszlopok, nullptr));
@@ -80,16 +92,19 @@ public:
 				if (cella) { // ha nullptr, nincs mit csinalni! (else ag)
 					std::vector<cellCoords> szomszedok =
 						getSzomszedok(sorSz, oszlopSz);
-					std::cout << "Tabla " << sorSz << ". soranak es ";
-					std::cout << oszlopSz << ". oszlopanak szomszedai:";
-					std::cout << std::endl;
-					for (auto sz : szomszedok) {
-						std::cout << "\t" << sz.first << ", " << sz.second;
-						std::cout << std::endl;
+
+					cellCoords szomszed = getRandomSzomszed(szomszedok);
+					
+					// ellenorizni kell, hogy nem ugyanott marad!
+					if (szomszed.first != sorSz || szomszed.second != oszlopSz) {
+						tabla[szomszed.first][szomszed.second] = cella;
+						tabla[sorSz][oszlopSz] = nullptr;
 					}
+						
 				}
 			}
 		}
+		print();
 	}
 
 	void print() {
@@ -105,5 +120,7 @@ public:
 			}
 			std::cout << std::endl;
 		}
+		std::cout << "=======" << std::endl << std::endl;
 	}
+	
 };
