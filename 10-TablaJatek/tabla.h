@@ -15,6 +15,15 @@ public:
 			tabla.push_back(std::vector<Babu*>(szOszlopok, nullptr));
 		}
 	}
+	~Tabla() {
+		for (auto& sor : tabla) {
+			for (auto& cella : sor) {
+				if (cella != nullptr) {
+					delete cella;
+				}
+			}
+		}
+	}
 	void createBabu(int coordX, int coordY, BabuTypes bt) {
 		try { // .at() miatt!
 			if (bt == BabuTypes::Aligator) {
