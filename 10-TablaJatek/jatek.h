@@ -1,5 +1,4 @@
 #pragma once
-#include <map>
 #include "tabla.h"
 
 typedef std::map<std::pair<int, int>, BabuTypes> BabuPositions;
@@ -34,5 +33,9 @@ public:
 		//Tabla tabla2(sorok, oszlopok);
 		//tabla2 = tabla; // erre is vigyazni kell (copy assignment)
 
+	}
+
+	void leptet() {
+		tabla.leptet();
 	}
 };
