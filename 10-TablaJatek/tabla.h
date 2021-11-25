@@ -112,9 +112,32 @@ public:
 					
 					// ellenorizni kell, hogy nem ugyanott marad!
 					if (szomszed.first != sorSz || szomszed.second != oszlopSz) {
-						tabla[szomszed.first][szomszed.second] = cella;
-						tabla[sorSz][oszlopSz] = nullptr;
-						cella->freeze();
+						std::cout << cella->char_rep() << " atlepett a (";
+						std::cout << szomszed.first << ", " << szomszed.second;
+						std::cout << ") mezore!" << std::endl;
+
+						Babu* vedekezo = tabla[szomszed.first][szomszed.second];
+
+						if (vedekezo) {
+							// ha van valami ami ott van eppen, akkor megtamadja
+							if (cella->megtamad(vedekezo)) {
+								tabla[szomszed.first][szomszed.second] = cella;
+								tabla[sorSz][oszlopSz] = nullptr;
+								cella->freeze();
+
+								std::cout << "\t\t" << vedekezo->char_rep() << " meghalt :(" << std::endl;
+								delete vedekezo;
+							}
+							else {
+								std::cout << "\t\t" << cella->char_rep() << " meghalt :(" << std::endl;
+								delete cella;
+							}
+						}
+						else {
+							tabla[szomszed.first][szomszed.second] = cella;
+							tabla[sorSz][oszlopSz] = nullptr;
+							cella->freeze();
+						}
 					}
 				}
 			}
