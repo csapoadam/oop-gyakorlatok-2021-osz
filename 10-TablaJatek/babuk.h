@@ -3,7 +3,8 @@
 enum class BabuTypes {
 	Aligator,
 	Csirke,
-	Ember
+	Ember,
+	Tigris
 };
 
 // ez lesz az abstract base class, amibol tobbfele Babu szarmazhat
@@ -50,4 +51,13 @@ public:
 	}
 	double getTamadoEro() { return 0.8; }
 	double getVedekezoEro() { return 0.7; }
+};
+
+class Tigris : public Babu {
+public:
+	char char_rep() override {
+		return 'T';
+	}
+	double getTamadoEro() { return 0.9; }
+	double getVedekezoEro() { return 0.8; }
 };

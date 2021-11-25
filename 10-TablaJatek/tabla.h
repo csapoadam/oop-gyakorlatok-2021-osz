@@ -85,6 +85,10 @@ public:
 				std::cout << "creating ember at cell ";
 				tabla.at(coordX).at(coordY) = new Ember();
 			}
+			else if (bt == BabuTypes::Tigris) {
+				std::cout << "creating tigris at cell ";
+				tabla.at(coordX).at(coordY) = new Tigris();
+			}
 			std::cout << coordX << ", " << coordY << std::endl;
 		}
 		catch (std::out_of_range const& exc) {

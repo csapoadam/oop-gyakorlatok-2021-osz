@@ -8,6 +8,11 @@
 int main()
 {
 	BabuPositions positions;
+	// mi kell ahhoz, hogy egy uj tipust hozzaadjunk? - mint Tigris
+	positions[std::make_pair<int, int>(0, 0)] = BabuTypes::Csirke;
+	positions[std::make_pair<int, int>(0, 1)] = BabuTypes::Tigris;
+	// hatuluto, hogy bele kell nyulni a Tabla::createBabu() metodusba...
+
 	positions[std::make_pair<int, int>(3, 4)] = BabuTypes::Aligator;
 	positions[std::make_pair<int, int>(0, 7)] = BabuTypes::Csirke;
 	// mi tortenik, ha tulcimzek?
