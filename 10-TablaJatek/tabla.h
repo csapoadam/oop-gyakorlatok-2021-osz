@@ -130,6 +130,9 @@ public:
 							}
 							else {
 								std::cout << "\t\t" << cella->char_rep() << " meghalt :(" << std::endl;
+								// ha a tamado (aki lep) meghal, nem eleg delete-elni a
+								// memoriabol, hanem a tablarol is le kell szedni!
+								tabla[sorSz][oszlopSz] = nullptr;
 								delete cella;
 							}
 						}
