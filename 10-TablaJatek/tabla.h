@@ -86,10 +86,21 @@ public:
 	}
 
 	void leptet() {
+		// az osszes babut unfreeze-elni kell, hogy tudjanak mozogni
 		for (int sorSz = 0; sorSz < szSorok; sorSz++) {
 			for (int oszlopSz = 0; oszlopSz < szOszlopok; oszlopSz++) {
 				Babu* cella = tabla[sorSz][oszlopSz];
-				if (cella) { // ha nullptr, nincs mit csinalni! (else ag)
+				if (cella) {
+					cella->unfreeze();
+				}
+			}
+		}
+
+		for (int sorSz = 0; sorSz < szSorok; sorSz++) {
+			for (int oszlopSz = 0; oszlopSz < szOszlopok; oszlopSz++) {
+				Babu* cella = tabla[sorSz][oszlopSz];
+				// ha nullptr, vagy le van fagyasztva, nincs mit csinalni! (else ag)
+				if (cella && !cella->isStateFrozen()) {
 					std::vector<cellCoords> szomszedok =
 						getSzomszedok(sorSz, oszlopSz);
 
@@ -99,8 +110,8 @@ public:
 					if (szomszed.first != sorSz || szomszed.second != oszlopSz) {
 						tabla[szomszed.first][szomszed.second] = cella;
 						tabla[sorSz][oszlopSz] = nullptr;
+						cella->freeze();
 					}
-						
 				}
 			}
 		}
