@@ -32,15 +32,22 @@ class Tabla {
 		}
 		return retval;
 	}
-	cellCoords getRandomSzomszed(std::vector<cellCoords>& szomszedok) {
-		double rand01 = (double)rand() / RAND_MAX; // 0 es 1 kozotti szam
-		double leptek = 1.0 / szomszedok.size();
-		int leptekCnt = 1;
-		while (true) {
-			if (rand01 < (leptekCnt * leptek) + 0.001) {
-				return szomszedok[leptekCnt - 1];
+	cellCoords getRandomSzomszed(int sorSz, int oszlopSz) {
+		std::vector<cellCoords> szomszedok = getSzomszedok(sorSz, oszlopSz);
+
+		if (szomszedok.size() > 0) {
+			double rand01 = (double)rand() / RAND_MAX; // 0 es 1 kozotti szam
+			double leptek = 1.0 / szomszedok.size();
+			int leptekCnt = 1;
+			while (true) {
+				if (rand01 < (leptekCnt * leptek) + 0.001) {
+					return szomszedok[leptekCnt - 1];
+				}
+				leptekCnt++;
 			}
-			leptekCnt++;
+		}
+		else {
+			return std::make_pair(sorSz, oszlopSz);
 		}
 	}
 public:
@@ -101,10 +108,7 @@ public:
 				Babu* cella = tabla[sorSz][oszlopSz];
 				// ha nullptr, vagy le van fagyasztva, nincs mit csinalni! (else ag)
 				if (cella && !cella->isStateFrozen()) {
-					std::vector<cellCoords> szomszedok =
-						getSzomszedok(sorSz, oszlopSz);
-
-					cellCoords szomszed = getRandomSzomszed(szomszedok);
+					cellCoords szomszed = getRandomSzomszed(sorSz, oszlopSz);
 					
 					// ellenorizni kell, hogy nem ugyanott marad!
 					if (szomszed.first != sorSz || szomszed.second != oszlopSz) {
