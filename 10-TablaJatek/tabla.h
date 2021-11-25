@@ -72,26 +72,14 @@ public:
 	Tabla& operator=(const Tabla&) = delete;
 
 	void createBabu(int coordX, int coordY, BabuTypes bt) {
+		Babu* newBabu = BabuFactory::New(bt);
 		try { // .at() miatt!
-			if (bt == BabuTypes::Aligator) {
-				std::cout << "creating aligator at cell ";
-				tabla.at(coordX).at(coordY) = new Aligator();
-			}
-			else if (bt == BabuTypes::Csirke) {
-				std::cout << "creating csirke at cell ";
-				tabla.at(coordX).at(coordY) = new Csirke();
-			}
-			else if (bt == BabuTypes::Ember) {
-				std::cout << "creating ember at cell ";
-				tabla.at(coordX).at(coordY) = new Ember();
-			}
-			else if (bt == BabuTypes::Tigris) {
-				std::cout << "creating tigris at cell ";
-				tabla.at(coordX).at(coordY) = new Tigris();
-			}
+			tabla.at(coordX).at(coordY) = newBabu;
+			std::cout << "creating " << newBabu->getName() << " at cell ";
 			std::cout << coordX << ", " << coordY << std::endl;
 		}
 		catch (std::out_of_range const& exc) {
+			delete newBabu; // ez fontos! ha nem tudtuk a tablahoz hozzaadni
 			std::cout << std::endl << exc.what() << std::endl;
 		}
 	}
