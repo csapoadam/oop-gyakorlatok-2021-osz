@@ -12,8 +12,8 @@ void f() {
     vj.addValaszto(new Valaszto("Carla Boyce", "Rochester", 22, 471832)); // same id!
     vj.printValasztok();
 
-    //Election election2020("Valasztas-2020", 3); // jeloltek szama
-    //vj.initializeElection(election2020);
+    Valasztas election2020("Valasztas-2020", 3); // jeloltek szama
+    vj.initializeValasztas(election2020);
 
     //// ezutan valami ilyesmi lesz:
     //vj.vote(471832, election2020, 1); // adott id-ju szavazo adott valasztason adott jeloltre szavaz

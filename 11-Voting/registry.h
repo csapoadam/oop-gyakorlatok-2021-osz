@@ -3,13 +3,21 @@
 #include <map>
 #include <string>
 
+#include "valasztas.h"
+
 class Valaszto;
 
 class ValasztasiJegyzek {
 	std::map<int, Valaszto*> valasztok;
+	Valasztas valasztas; // ez igy jo??
 public:
+	// valasztas tagvaltozot muszaj inicializalni:
+	ValasztasiJegyzek() : valasztas("", 0) {}
 	void addValaszto(Valaszto* vp);
 	void printValasztok();
+	void initializeValasztas(Valasztas v) {
+		valasztas = v;
+	}
 };
 
 class Valaszto {
