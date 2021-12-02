@@ -10,6 +10,8 @@ class Valaszto;
 class ValasztasiJegyzek {
 	std::map<int, Valaszto*> valasztok;
 	Valasztas valasztas; // ez igy jo??
+	std::map<int, bool> hasSzavazott; // minden valasztora
+	// megmondja, hogy szavazott-e mar...
 public:
 	// valasztas tagvaltozot muszaj inicializalni:
 	ValasztasiJegyzek() : valasztas("", 0) {}
@@ -17,13 +19,21 @@ public:
 	void printValasztok();
 	void initializeValasztas(Valasztas v) {
 		valasztas = v;
+		for (auto vIdEsCim : valasztok) {
+			// minden valasztora bejegyezni h eddig 0x szavazott
+			hasSzavazott[vIdEsCim.first] = false;
+		}
 	}
 	void szavaz(int id, Valasztas& v, int jelolt) {
 		// eloszor ellenorizni kene, hogy:
 		// - letezik-e ilyen szavazo?
 		// - nem szavazott-e mar?
-		// de ezt most hagyjuk:
-		v.addSzavazat(jelolt);
+		if (valasztok.find(id) != valasztok.end()) {
+			if (!hasSzavazott[id]) {
+				v.addSzavazat(jelolt);
+				hasSzavazott[id] = true;
+			}
+		}
 	}
 };
 
