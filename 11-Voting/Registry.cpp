@@ -3,8 +3,14 @@
 
 // itt implementalunk sok mindent
 void ValasztasiJegyzek::addValaszto(Valaszto* vp) {
-	// todo! detektaljuk ha mar benne van!
-	valasztok[vp->getAzonosito()] = vp;
+	int id = vp->getAzonosito();
+	if (valasztok.find(id) == valasztok.end()) {
+		valasztok[id] = vp;
+	}
+	else {
+		std::cout << "Ez a valaszto id mar letezik";
+		std::cout << std::endl;
+	}
 }
 
 void ValasztasiJegyzek::printValasztok() {
