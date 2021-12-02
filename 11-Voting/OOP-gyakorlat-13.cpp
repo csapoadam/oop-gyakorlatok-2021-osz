@@ -16,11 +16,11 @@ void f() {
     vj.initializeValasztas(election2020);
 
     //// ezutan valami ilyesmi lesz:
-    //vj.vote(471832, election2020, 1); // adott id-ju szavazo adott valasztason adott jeloltre szavaz
-    //vj.vote(999999, election2020, 2); // ilyen id-ju szavazo nincs!!
-    //vj.vote(471832, election2020, 1); // 2x nem lehet szavazni!!
-    //vj.vote(444512, election2020, 2);
-    //vj.vote(103410, election2020, 2);
+    vj.szavaz(471832, election2020, 1); // adott id-ju szavazo adott valasztason adott jeloltre szavaz
+    vj.szavaz(999999, election2020, 2); // ilyen id-ju szavazo nincs!!
+    vj.szavaz(471832, election2020, 1); // 2x nem lehet szavazni!!
+    vj.szavaz(444512, election2020, 2);
+    vj.szavaz(103410, election2020, 2);
 
     //election2020.printResults();
 }

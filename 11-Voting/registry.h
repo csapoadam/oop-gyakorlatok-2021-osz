@@ -18,6 +18,13 @@ public:
 	void initializeValasztas(Valasztas v) {
 		valasztas = v;
 	}
+	void szavaz(int id, Valasztas v, int jelolt) {
+		// eloszor ellenorizni kene, hogy:
+		// - letezik-e ilyen szavazo?
+		// - nem szavazott-e mar?
+		// de ezt most hagyjuk:
+		v.addSzavazat(jelolt);
+	}
 };
 
 class Valaszto {
