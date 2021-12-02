@@ -9,29 +9,40 @@ class Valaszto;
 
 class ValasztasiJegyzek {
 	std::map<int, Valaszto*> valasztok;
-	Valasztas valasztas; // ez igy jo??
-	std::map<int, bool> hasSzavazott; // minden valasztora
-	// megmondja, hogy szavazott-e mar...
+	// minden valasztas pointerhez, minden valasztora megmondja, hogy szavazott-e mar...
+	std::map< Valasztas*, std::map<int, bool> > hasSzavazottPerValasztas;
 public:
-	// valasztas tagvaltozot muszaj inicializalni:
-	ValasztasiJegyzek() : valasztas("", 0) {}
 	void addValaszto(Valaszto* vp);
 	void printValasztok();
-	void initializeValasztas(Valasztas v) {
-		valasztas = v;
-		for (auto vIdEsCim : valasztok) {
-			// minden valasztora bejegyezni h eddig 0x szavazott
-			hasSzavazott[vIdEsCim.first] = false;
+	void initializeValasztas(Valasztas& v) {
+		if (hasSzavazottPerValasztas.find(&v) == hasSzavazottPerValasztas.end()) {
+			// ha nem letezik ilyen valasztas meg
+			std::map<int, bool> hasSzavazott;
+
+			for (auto vIdEsCim : valasztok) {
+				// minden valasztora bejegyezni h eddig 0x szavazott
+				hasSzavazott[vIdEsCim.first] = false;
+			}
+
+			hasSzavazottPerValasztas[&v] = hasSzavazott;
 		}
+		
 	}
 	void szavaz(int id, Valasztas& v, int jelolt) {
 		// eloszor ellenorizni kene, hogy:
 		// - letezik-e ilyen szavazo?
-		// - nem szavazott-e mar?
+		// - letezik-e ilyen valasztas?
+		// - nem szavazott-e mar adott szavazo adott valasztason?
 		if (valasztok.find(id) != valasztok.end()) {
-			if (!hasSzavazott[id]) {
-				v.addSzavazat(jelolt);
-				hasSzavazott[id] = true;
+			// letezik ez a valaszto
+			if (hasSzavazottPerValasztas.find(&v) !=
+				hasSzavazottPerValasztas.end()) { 
+				// letezik ilyen valasztas
+				// ... es nem szavazott benne meg...
+				if (!hasSzavazottPerValasztas[&v][id]) {
+					v.addSzavazat(jelolt);
+					hasSzavazottPerValasztas[&v][id] = true;
+				}
 			}
 		}
 	}

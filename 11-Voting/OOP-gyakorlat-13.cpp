@@ -17,6 +17,7 @@ void f() {
 
     Valasztas referendum2020("Nepszavazas-2020", 2); // jeloltek szama
     vj.initializeValasztas(referendum2020);
+    vj.initializeValasztas(referendum2020);
 
     //// ezutan valami ilyesmi lesz:
     vj.szavaz(471832, election2020, 1); // adott id-ju szavazo adott valasztason adott jeloltre szavaz
@@ -30,8 +31,15 @@ void f() {
     vj.szavaz(444512, referendum2020, 0);
     vj.szavaz(103410, referendum2020, 0);
 
+    // Feladat: akkor is ok ha nincs regisztralva ilyen valasztas!
+    Valasztas something2020("nincs-regisztralva", 2); // jeloltek szama
+    vj.szavaz(471832, something2020, 1);
+    vj.szavaz(444512, something2020, 0);
+    vj.szavaz(103410, something2020, 0);
+
     election2020.eredmenyHirdetes();
     referendum2020.eredmenyHirdetes();
+    something2020.eredmenyHirdetes();
 }
 
 int main()
