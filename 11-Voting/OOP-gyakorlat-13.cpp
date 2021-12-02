@@ -22,7 +22,7 @@ void f() {
     vj.szavaz(444512, election2020, 2);
     vj.szavaz(103410, election2020, 2);
 
-    //election2020.printResults();
+    election2020.eredmenyHirdetes();
 }
 
 int main()
