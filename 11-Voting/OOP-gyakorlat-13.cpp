@@ -1,6 +1,5 @@
 // OOP-gyakorlat-13.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
-
 #include <iostream>
 #include "registry.h" // ez a header meg include-olja az election.h-t is
 
@@ -10,7 +9,7 @@ void f() {
     vj.addValaszto(new Valaszto("Paul Szabo", "New York City", 41, 103410));
     vj.addValaszto(new Valaszto("Aaron Rosenfeldt", "Syracuse", 32, 444512));
     vj.addValaszto(new Valaszto("Sarah Smith", "Buffalo", 24, 471832));
-    //vj.addValaszto(new Valaszto("Carla Boyce", "Rochester", 22, 471832));
+    vj.addValaszto(new Valaszto("Carla Boyce", "Rochester", 22, 471832)); // same id!
     vj.printValasztok();
 
     //Election election2020("Valasztas-2020", 3); // jeloltek szama

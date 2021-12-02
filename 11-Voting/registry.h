@@ -1,8 +1,12 @@
 #pragma once
 
+#include <map>
+#include <string>
+
 class Valaszto;
 
 class ValasztasiJegyzek {
+	std::map<int, Valaszto*> valasztok;
 public:
 	void addValaszto(Valaszto* vp);
 	void printValasztok();
@@ -21,4 +25,8 @@ public:
 		int id
 	) : 
 		nev(n), varos(v), eletkor(e), azonosito(id) {}
+	int getAzonosito() { return azonosito; }
+	std::string getNev() { return nev; }
+	std::string getVaros() { return varos; }
+	int getEletkor() { return eletkor; }
 };
