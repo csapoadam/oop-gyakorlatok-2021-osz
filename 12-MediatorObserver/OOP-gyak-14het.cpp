@@ -3,9 +3,10 @@
 
 #include <iostream>
 
+#include "communications.h"
 #include "company.h"
 #include "externals.h"
-#include "communications.h"
+
 
 int main()
 {
@@ -21,9 +22,8 @@ int main()
 	Mediator itdept;
 	itdept.addEntity(&manager0).addEntity(&coworker0);
 
-	
-
-
-
+	manager0.sendMessage(&allemployees, "Hello everyone! Welcome to Company X!");
+	coworker1.sendMessage(&itdept, "Hello, dinner at my place?");
+	auditor0.sendMessage(&allemployees, "Reszkessetek tolem!");
 
 }

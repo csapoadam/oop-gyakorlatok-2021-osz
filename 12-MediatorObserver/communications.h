@@ -1,15 +1,22 @@
 #pragma once
 
 #include <vector>
+#include <string>
+
+class Mediatee {
+public:
+	virtual const std::string& getName() = 0;
+	virtual void receiveMessage(Mediatee* sender, const std::string& msg) = 0;
+};
 
 class Mediator {
-	std::vector<Employee*> employees;
+	std::vector<Mediatee*> mediatees;
 public:
-	Mediator& addEntity(Employee* ep) { employees.push_back(ep); return *this; }
-	void distributeMessage(Employee* sender, std::string msg) {
-		for (auto empl : employees) {
-			if (empl != sender) {
-				empl->receiveMessage(sender, msg);
+	Mediator& addEntity(Mediatee* ep) { mediatees.push_back(ep); return *this; }
+	void distributeMessage(Mediatee* sender, std::string msg) {
+		for (auto med : mediatees) {
+			if (med != sender) {
+				med->receiveMessage(sender, msg);
 			}
 		}
 	}
