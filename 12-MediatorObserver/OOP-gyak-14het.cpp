@@ -7,6 +7,9 @@
 #include "company.h"
 #include "externals.h"
 
+#include "observables.h" // ebben legyen egy Mediator-t kiterjeszto ObservableMediator
+// abba beregisztralhatnak az Auditorok... es ertesitest kapnak mindenrol
+
 
 int main()
 {
@@ -16,8 +19,9 @@ int main()
 	Coworker coworker0("Magnus Sorensen", Department::IT);
 	Coworker coworker1("Markus Eva", Department::Marketing);
 
-	Mediator allemployees;
+	ObservableMediator allemployees;
 	allemployees.addEntity(&manager0).addEntity(&coworker0).addEntity(&coworker1);
+	allemployees.registerAuditor(&auditor0);
 	
 	Mediator itdept;
 	itdept.addEntity(&manager0).addEntity(&coworker0);
