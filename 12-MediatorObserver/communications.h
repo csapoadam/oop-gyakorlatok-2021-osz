@@ -13,7 +13,7 @@ class Mediator {
 	std::vector<Mediatee*> mediatees;
 public:
 	Mediator& addEntity(Mediatee* ep) { mediatees.push_back(ep); return *this; }
-	void distributeMessage(Mediatee* sender, std::string msg) {
+	virtual void distributeMessage(Mediatee* sender, std::string msg) {
 		for (auto med : mediatees) {
 			if (med != sender) {
 				med->receiveMessage(sender, msg);
