@@ -3,6 +3,8 @@
 #include <string>
 #include <iostream>
 
+class Mediator;
+
 // 3 osztaly:
 // ososztaly: Employee - Ezek mediatorokon keresztul kommunikalnak
 // Manager - neve, department (dept. legyen enum class!)
@@ -26,6 +28,7 @@ public:
 		std::cout << ":" << std::endl;
 		std::cout << "\t\t" << msg << std::endl;
 	}
+	void sendMessage(Mediator* mp, const std::string& msg);
 };
 
 class Manager : public Employee {
