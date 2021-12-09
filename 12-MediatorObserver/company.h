@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 
 // 3 osztaly:
 // ososztaly: Employee - Ezek mediatorokon keresztul kommunikalnak
@@ -20,6 +21,11 @@ class Employee {
 	Department dept;
 public:
 	Employee(const std::string& n, Department d) : name(n), dept(d) {}
+	void receiveMessage(Employee* sender, std::string msg) {
+		std::cout << "\tMessage received by " << name << "from sender " << sender->name;
+		std::cout << ":" << std::endl;
+		std::cout << "\t\t" << msg << std::endl;
+	}
 };
 
 class Manager : public Employee {

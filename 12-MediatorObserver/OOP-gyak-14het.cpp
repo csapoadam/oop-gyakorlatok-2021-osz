@@ -5,7 +5,7 @@
 
 #include "company.h"
 #include "externals.h"
-
+#include "communications.h"
 
 int main()
 {
@@ -14,6 +14,16 @@ int main()
 	Manager manager0("Menedzser Mark", Department::IT);
 	Coworker coworker0("Magnus Sorensen", Department::IT);
 	Coworker coworker1("Markus Eva", Department::Marketing);
+
+	Mediator allemployees;
+	allemployees.addEntity(&manager0).addEntity(&coworker0).addEntity(&coworker1);
+	
+	Mediator itdept;
+	itdept.addEntity(&manager0).addEntity(&coworker0);
+
+	
+
+
 
 
 }
